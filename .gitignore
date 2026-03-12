@@ -1,28 +1,19 @@
-.DS_Store
-node_modules/
+/.phpunit.cache
+/node_modules
+/public/build
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
 .env
-.knit
-knit.lock
-
-# IDE user config
-.vscode/
-.idea/
-.vs/
-
-# Logs
-yarn-error.log
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
 npm-debug.log
-lerna-debug.log
-
-# Istanbul coverage
-coverage/
-
-# cypress
-cypress/screenshots
-cypress/videos
-
-# vitest
-__screenshots__/
-
-.vercel
-.now
+yarn-error.log
+/.fleet
+/.idea
+/.vscode

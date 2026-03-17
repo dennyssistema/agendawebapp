@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import MainRoutes from './MainRoutes';
 import AuthRoutes from './AuthRoutes';
 
+console.log(AuthRoutes);
+
 export default createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -10,7 +12,7 @@ export default createRouter({
             component: () => import('@/pages/pages/Error404.vue')
         },
         MainRoutes,
-        AuthRoutes
+        ...AuthRoutes,
     ]
 });
 

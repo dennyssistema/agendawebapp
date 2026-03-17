@@ -58,7 +58,7 @@ const preview_link = [
                     <v-menu>
                         <template v-slot:activator="{ props }">
                             <v-btn variant="outlined" class="border-blue text-surface text-h6 font-weight-medium" rounded="md" v-bind="props">
-                                <span class="d-flex ga-2"> Live Preview <ChevronDownIcon size="20" /> </span>
+                                <!-- <span class="d-flex ga-2"> Live Preview <ChevronDownIcon size="20" /> </span> -->
                             </v-btn>
                         </template>
                         <v-list density="compact" elevation="10" class="pa-3">

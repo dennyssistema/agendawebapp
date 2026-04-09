@@ -8,6 +8,11 @@ import axios from 'axios';
 import { useField, useForm } from 'vee-validate';
 import { object, string, number, date, InferType } from 'yup';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
+import { useMeStore } from '@/stores/me';
+
+const authStore = useAuthStore();
+const meStore = useMeStore();
 
 const router = useRouter();
 
@@ -18,6 +23,10 @@ const schema = object({
 
 const { handleSubmit, errors, isSubmitting } = useForm({
     validationSchema: schema,   
+    initialValues: {
+        email: 'test@example.com',
+        password: 'password'
+    }
 })
 
 const submit = handleSubmit(async (values) => {
@@ -30,20 +39,12 @@ const { value: password } = useField('password')
 function login(values){
 errorLogin.value = '';
 
-axios.get('/sanctum/csrf-cookie')
-    .then(() => {
-        axios.post('/api/login', {
-            'email': values.email,
-            'password': values.password
-        }).then((response) => {
-            console.log(response);
-            router.push({ name: 'dashboard' });
-        }).catch((error) => {
-            console.log(error);
-            errorLogin.value = 'Usuário ou senha inválidos';
-        });
+authStore
+    .login(values.email, values.password)
+    .then(() => {                
+        router.push({ name: 'dashboard' });
     }).catch((error) => {
-        console.log(error);
+        errorLogin.value = 'Usuário ou senha inválidos';
     });
 }
 
@@ -51,6 +52,7 @@ axios.get('/sanctum/csrf-cookie')
 
 <template>
     <v-form @submit.prevent="submit">
+        {{ meStore.user }}
         <v-row class="d-flex mb-3">
             <v-alert v-if="errorLogin" type="error">{{ errorLogin }}</v-alert>
             <v-col cols="12">

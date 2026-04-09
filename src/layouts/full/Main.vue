@@ -66,7 +66,7 @@ watch(mdAndDown, (val) => {
             </div>
             <div>
                 <!-- Upgrade button -->
-                <v-btn class="mr-2 bg-primary" href="https://adminmart.com/product/modernize-vuetify-vue-admin-dashboard/?ref=56#product-demo-section" target="_blank">Check Pro Template</v-btn>
+                <!-- <v-btn class="mr-2 bg-primary" href="https://adminmart.com/product/modernize-vuetify-vue-admin-dashboard/?ref=56#product-demo-section" target="_blank">Check Pro Template</v-btn> -->
                 <!-- User Profile -->
                 <ProfileDD />
             </div>

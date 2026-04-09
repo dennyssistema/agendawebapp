@@ -1,18 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MainRoutes from './MainRoutes';
 import AuthRoutes from './AuthRoutes';
+import { useAuthStore } from '@/stores/auth';
 
-console.log(MainRoutes);
-
-export default createRouter({
+const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
-        ...MainRoutes,
-        ...AuthRoutes,
         {
             path: '/:pathMatch(.*)*',
             component: () => import('@/pages/pages/Error404.vue')
         },
+        ...MainRoutes,
+        ...AuthRoutes,
     ]
 });
+
+router.beforeEach((to, from, next) => {
+    const authStore = useAuthStore();
+    authStore.sanctum();
+    next();
+})
+
+export default router;
 

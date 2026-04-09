@@ -1,7 +1,11 @@
+import { useMeStore } from '@/stores/me';
+import { auth } from './guards';
+
 export default [
     {
         path: '/login',
         component: () => import('@/layouts/blank/BlankLayout.vue'),
+        beforeEnter: auth,
         children: [
             {
                 name: 'login',
